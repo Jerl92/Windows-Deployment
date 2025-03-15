@@ -127,7 +127,9 @@ if %Firmware%==0x2 echo rem    ** NOTE: For Advanced Format 4Kn drives, >> %~dp0
 if %Firmware%==0x2 echo rem               change this value to size = 260 **  >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo format quick fs=fat32 label="System" >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo assign letter="S" >> %~dp0CreatePartitions-UEFI.txt
-if %Firmware%==0x2 echo rem == 2. Windows partition ======================== >> %~dp0CreatePartitions-UEFI.txt
+if %Firmware%==0x2 echo rem == 2. Microsoft Reserved (MSR) partition ======= >> %~dp0CreatePartitions-UEFI.txt
+if %Firmware%==0x2 echo create partition msr size=16 >> %~dp0CreatePartitions-UEFI.txt
+if %Firmware%==0x2 echo rem == 3. Windows partition ======================== >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo rem ==    a. Create the Windows partition ========== >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo create partition primary >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo shrink minimum=1024 >> %~dp0CreatePartitions-UEFI.txt
@@ -137,7 +139,7 @@ if %Firmware%==0x2 echo rem                (winre.wim)                    ** >> 
 if %Firmware%==0x2 echo rem ==    c. Prepare the Windows partition =========  >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo format quick fs=ntfs label="Windows" >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo assign letter="W" >> %~dp0CreatePartitions-UEFI.txt
-if %Firmware%==0x2 echo rem === 3. Recovery partition ====================== >> %~dp0CreatePartitions-UEFI.txt
+if %Firmware%==0x2 echo rem === 4. Recovery partition ====================== >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo create partition primary size=1024 >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo format quick fs=ntfs label="Recovery" >> %~dp0CreatePartitions-UEFI.txt
 if %Firmware%==0x2 echo assign letter="R" >> %~dp0CreatePartitions-UEFI.txt
